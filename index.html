@@ -4,94 +4,164 @@
   <meta name="msvalidate.01" content="FCCB324DC27E060EF648ACA7A6675844" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>暮雪微晴的个人网站</title>
+  <title>暮雪微晴的个人小站</title>
   <style>
+    /* 基础样式变量 */
     :root {
-      --bg-color: #e6f3ff;
+      --bg-color: #f0f7ff;
       --text-color: #333;
       --card-color: #fff;
-      --highlight-color: #00a0e9;
+      --highlight-color: #0088cc;
       --border-color: #cce0ff;
+      --shadow: 0 4px 12px rgba(0, 136, 204, 0.1);
+    }
+    
+    /* 全局重置与基础样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
       background-color: var(--bg-color);
       color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding-bottom: 80px; /* 为固定底部留出空间 */
     }
     
+    /* 容器样式 */
     .container {
       max-width: 600px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 30px 20px;
     }
     
-    .header {
+    /* 头部区域 */
+    .profile-header {
       display: flex;
       align-items: center;
-      padding: 20px 0;
+      padding: 20px;
+      background-color: var(--card-color);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
     }
     
     .avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 10px;
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
       object-fit: cover;
-      margin-right: 15px;
+      border: 3px solid var(--border-color);
+      margin-right: 20px;
     }
     
-    .profile-info h1 {
-      margin: 0;
-      font-size: 24px;
-      font-weight: bold;
+    .profile-title {
       color: var(--highlight-color);
+      font-size: 26px;
+      margin-bottom: 5px;
     }
     
-    .profile-info p {
-      margin: 5px 0 0;
-      font-size: 14px;
+    .profile-meta {
       color: #666;
+      font-size: 14px;
     }
     
+    /* 内容卡片 */
+    .content-card {
+      background-color: var(--card-color);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+    
+    .content-card p {
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+    
+    .content-card p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* 强调文本 */
+    .highlight-text {
+      color: var(--highlight-color);
+      font-weight: 500;
+    }
+    
+    /* 底部区域 */
     .footer {
       position: fixed;
       left: 0;
       bottom: 0;
       width: 100%;
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      background-color: var(--card-color);
+      color: #666;
       text-align: center;
-      padding: 10px 0;
+      padding: 12px 0;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+      font-size: 14px;
     }
     
+    /* 链接样式 */
     a {
       color: var(--highlight-color);
       text-decoration: none;
+      transition: color 0.3s ease;
     }
     
     a:hover {
+      color: #006699;
       text-decoration: underline;
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 480px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .avatar {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+      
+      .content-card {
+        padding: 20px 15px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <img class="avatar" src="https://tc.z.wiki/autoupload/f/iCWo9dna3PWc37pORkiGq1nhNr0Hfp1TyVMev0PaOXGyl5f0KlZfm6UsKj-HyTuv/20250716/dzdl/1200X900/output_QZONE_50218fb2-598c-4f82-941a-3edd13010880_1752374566390_.jpg" alt="头像">
-      <div class="profile-info">
-        <h3>暮雪微晴</h3>
+    <!-- 个人信息头部 -->
+    <div class="profile-header">
+      <img class="avatar" src="https://tc.z.wiki/autoupload/f/iCWo9dna3PWc37pORkiGq1nhNr0Hfp1TyVMev0PaOXGyl5f0KlZfm6UsKj-HyTuv/20250716/dzdl/1200X900/output_QZONE_50218fb2-598c-4f82-941a-3edd13010880_1752374566390_.jpg" alt="暮雪微晴的头像">
+      <div>
+        <h1 class="profile-title">暮雪微晴</h1>
+        <div class="profile-meta">一个青少年 · 喜欢娱乐</div>
       </div>
     </div>
-
-    <p>大家好，我是一个2009年出生的男孩纸~。其实，其实……我喜欢男……（不要当真哦，我真的只喜欢女孩纸~）</p>
-    <p>我特别憧憬恋爱，那种心动的感觉，让我觉得很美好</p>
-    <p>太阳慢慢落下，天空变成温柔的粉色和橙色，像棉花糖一样。轻轻搂着她的肩膀，或者抱着她，感受她的温度。那一刻，整个世界好像都安静了</p>
-    <p>有喜欢的加我（doge)，我挺青涩的，我常常想，要是能和喜欢的人一起看日落，然后偷偷抱一下，那该多浪漫呀。虽然我还没试过，但我觉得自己已经准备好啦。如果你也喜欢简单的小浪漫，那就别犹豫啦，加我一起开启属于我们的小故事~</p>
-  
+    
+    <!-- 个人介绍内容 -->
+    <div class="content-card">
+      <p>大家好呀～我是一个未成年的男孩纸。其实呢……我喜欢男……（开玩笑的啦，我真的只喜欢女孩子～）</p>
+      
+      <p>我特别憧憬恋爱的感觉，那种心动的瞬间，总觉得特别美好。</p>
+      
+      <p>想象一下：太阳慢慢落下，天空变成温柔的粉色和橙色，像棉花糖一样。轻轻搂着她的肩膀，或者抱着她，感受她的温度。那一刻，整个世界好像都安静了。</p>
+      
+      <p>有喜欢的可以加我哦（<span class="highlight-text">doge</span>）。我可能还有点青涩，但常常会想，要是能和喜欢的人一起看日落，然后偷偷抱一下，那该多浪漫呀。虽然还没试过，但我觉得自己已经准备好啦。如果你也喜欢这种简单的小浪漫，那就别犹豫啦，加我一起开启属于我们的小故事吧～</p>
+    </div>
   </div>
  
+  <!-- 页脚信息 -->
   <div class="footer">
     <p>© 2025 暮雪微晴 版权所有</p>
   </div>
