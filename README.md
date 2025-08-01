@@ -4,7 +4,6 @@
 
 ## 部署状态
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ed2b4bb9-0d5e-44dd-b82d-5238624b3160/deploy-status)](https://app.netlify.com/projects/strong-blini-998ae9/deploys)
 
 ## 项目介绍
 
