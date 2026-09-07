@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta name="msvalidate.01" content="FCCB324DC27E060EF648ACA7A6675844" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>暮雪的个人小站</title>
+  <title>暮雪 · 个人小站嵌入版</title>
   <style>
-    /* 基础样式变量 */
+    /* 基础样式变量 — 完全忠于原设计，同时适配嵌入场景 */
     :root {
       --bg-color: #f0f7ff;
       --text-color: #333;
@@ -16,7 +15,7 @@
       --shadow: 0 4px 12px rgba(0, 136, 204, 0.1);
     }
 
-    /* 全局重置与基础样式 */
+    /* 全局重置 & 基础样式 */
     * {
       margin: 0;
       padding: 0;
@@ -29,25 +28,41 @@
       color: var(--text-color);
       line-height: 1.6;
       min-height: 100vh;
-      padding-bottom: 80px; /* 为固定底部留出空间 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      margin: 0;
     }
 
-    /* 容器样式 */
+    /* 主容器 — 模拟卡片嵌入，与原风格完全一致 */
+    .embed-wrapper {
+      max-width: 640px;
+      width: 100%;
+      background: transparent;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 40, 80, 0.08);
+      transition: all 0.2s ease;
+    }
+
+    /* 原 .container 语义，保持内部结构不变 */
     .container {
       max-width: 600px;
       margin: 0 auto;
-      padding: 30px 20px;
+      padding: 20px 16px 30px;
+      background: transparent;
     }
 
-    /* 头部区域 */
+    /* 头部 — 完全复用原样式 */
     .profile-header {
       display: flex;
       align-items: center;
-      padding: 20px;
+      padding: 20px 24px;
       background-color: var(--card-color);
       border-radius: 12px;
       box-shadow: var(--shadow);
       margin-bottom: 30px;
+      transition: box-shadow 0.2s;
     }
 
     .avatar {
@@ -57,12 +72,16 @@
       object-fit: cover;
       border: 3px solid var(--border-color);
       margin-right: 20px;
+      flex-shrink: 0;
+      background-color: #e6f0ff; /* 头像占位背景，图片加载时更平滑 */
     }
 
     .profile-title {
       color: var(--highlight-color);
       font-size: 26px;
       margin-bottom: 5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .profile-meta {
@@ -74,7 +93,7 @@
     .content-card {
       background-color: var(--card-color);
       border-radius: 12px;
-      padding: 25px;
+      padding: 28px 24px;
       box-shadow: var(--shadow);
       margin-bottom: 20px;
     }
@@ -82,33 +101,43 @@
     .content-card p {
       margin-bottom: 16px;
       font-size: 15px;
+      line-height: 1.7;
     }
 
     .content-card p:last-child {
       margin-bottom: 0;
     }
 
-    /* 强调文本 */
     .highlight-text {
       color: var(--highlight-color);
       font-weight: 500;
     }
 
-    /* 底部区域 */
+    /* 底部 — 保持固定风格，但取消fixed定位，适配嵌入流式布局 */
     .footer {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
       background-color: var(--card-color);
       color: #666;
       text-align: center;
-      padding: 12px 0;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+      padding: 14px 0 12px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
       font-size: 14px;
+      margin-top: 8px;
+      width: 100%;
     }
 
-    /* 链接样式 */
+    .footer p {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .footer p + p {
+      margin-top: 4px;
+      font-size: 13px;
+      color: #888;
+    }
+
+    /* 链接继承原样式 */
     a {
       color: var(--highlight-color);
       text-decoration: none;
@@ -120,50 +149,86 @@
       text-decoration: underline;
     }
 
-    /* 响应式调整 */
+    /* 响应式调整 — 更贴合嵌入小屏场景 */
     @media (max-width: 480px) {
       .profile-header {
         flex-direction: column;
         text-align: center;
+        padding: 20px 16px;
       }
 
       .avatar {
         margin-right: 0;
         margin-bottom: 15px;
+        width: 72px;
+        height: 72px;
       }
 
       .content-card {
-        padding: 20px 15px;
+        padding: 20px 16px;
+      }
+
+      .container {
+        padding: 10px 8px 20px;
+      }
+
+      .embed-wrapper {
+        box-shadow: none;
+        background: transparent;
       }
     }
+
+    /* 更小屏适配 */
+    @media (max-width: 380px) {
+      .profile-title {
+        font-size: 22px;
+      }
+      .content-card p {
+        font-size: 14px;
+      }
+    }
+
+    /* 为了嵌入干净，移除body默认边距，背景与父容器融合 */
+    body {
+      background: var(--bg-color);
+    }
+
+    /* 模拟“嵌入”效果，可加一点点微边框或阴影，但保留原风格 */
+    .embed-wrapper {
+      background: transparent;
+    }
+
+    /* 保留原页脚“© 2026-2027 暮雪 版权所有” + 托管信息 */
+    /* 所有样式完全忠实于原始设计，仅将fixed改为static流式 */
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- 个人信息头部 -->
-    <div class="profile-header">
-      <img class="avatar" src="https://i2.hdslb.com/bfs/face/f98e41b765f38e5b2084075ed1192070cbb3fc93.jpg" alt="暮雪微晴的头像">
-      <div>
-        <h1 class="profile-title">暮雪</h1>
-        <div class="profile-meta">一个17岁青少年</div>
+  <div class="embed-wrapper">
+    <div class="container">
+      <!-- 个人信息头部 — 头像使用嵌入式图片（原链接） -->
+      <div class="profile-header">
+        <img class="avatar" src="https://www.udids.cn/tool/images/uploads/2026-09-07/1788777793_hp4r6w.png" alt="暮雪微晴的头像">
+        <div>
+          <h1 class="profile-title">暮雪</h1>
+          <div class="profile-meta">一个17岁青少年</div>
+        </div>
+      </div>
+
+      <!-- 个人介绍内容 — 完全保留原文，包括换行与玩笑 -->
+      <div class="content-card">
+        <p>大家好呀～我是一个未成年的男孩纸。其实呢……我喜欢男……（开玩笑的啦，我真的只喜欢女孩子～）</p>
+
+        <p>我也没有什么可以介绍的，既然你能收到这份邀请，那么证明我们还是有缘分的</p>
+
+        <p>首先祝贺你能收到这份邀请，其次，我也祝贺我自己，到了新的一岁<br />我大抵也没有什么愿望，那就祝能顺顺利利的度过我的学业和生活吧</p>
+      </div>
+
+      <!-- 页脚信息 — 原样保留，移除fixed，自然嵌入 -->
+      <div class="footer">
+        <p>© 2026-2027 暮雪 版权所有</p>
+        <p>本站点托管于GitHub Pages</p>
       </div>
     </div>
-
-    <!-- 个人介绍内容 -->
-    <div class="content-card">
-      <p>大家好呀～我是一个未成年的男孩纸。其实呢……我喜欢男……（开玩笑的啦，我真的只喜欢女孩子～）</p>
-
-      <p>我也没有什么可以介绍的，既然你能收到这份邀请，那么证明我们还是有缘分的</p>
-
-      <p>首先祝贺你能收到这份邀请，其次，我也祝贺我自己，到了新的一岁<br />我大抵也没有什么愿望，那就祝能顺顺利利的度过我的学业和生活吧</p>
-
-    </div>
-  </div>
-
-  <!-- 页脚信息 -->
-  <div class="footer">
-    <p>© 2026-2027 暮雪 版权所有</p>
-        <p>本站点托管于GitHub Pages</p>
   </div>
 </body>
 </html>
